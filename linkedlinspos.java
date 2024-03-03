@@ -39,22 +39,28 @@ public class linkedlinspos {
     }
     public void inspos(int pos,int data){
         
-        if(pos>size+1||pos<1){
+        if(pos>size||pos<0){
             System.out.println("insertion noyt possible");
         }
         else{
             Node n = new Node(data);
-            if(pos==1){
+            if(pos==0){
                 n.next = head;
                 head = n;
             }
             else{
                 Node temp = head;
-                for(int i=1;i<pos-1;i++){
+                for(int i=1;i<pos;i++){
                     temp = temp.next;
                 }
-                n.next = temp.next;
-                temp.next=  n;
+                if(temp.next==null){
+                    tail.next = n;
+                    tail = n;
+                }
+                else{
+                    n.next = temp.next;
+                    temp.next = n;
+                }
             }
         }
         
@@ -67,7 +73,7 @@ public class linkedlinspos {
         l.create(5);
         l.print(l.head);
         System.out.println();
-        l.inspos(1, 3);
+        l.inspos(0, 3);
         l.print(l.head);
     }
 }
